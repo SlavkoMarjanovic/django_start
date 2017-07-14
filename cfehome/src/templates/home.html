@@ -1,0 +1,12 @@
+{% extends "base.html"%}
+
+{% block content %}
+<h1>Hello word</h1>
+<p>This is a {{html_var}} comming true</p>
+<p>This is a random {{ num }}</p>
+<p>
+    {% if bool_item %}
+    This is a random {{ num }}
+    {% endif %}
+</p>
+{% endblock content%}

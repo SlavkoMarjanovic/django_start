@@ -1,0 +1,16 @@
+<<html lang=en>
+
+<head>
+    <title>{%block head_title%}Wellcome{%endblock head_title%}</title>
+</head>
+<body>
+<h1>Moupicky.com</h1>
+<a href="/">Home</a>
+<a href="/about">about</a>
+<a href="/contact">contact</a>
+
+<div class="container">
+    {% block content %}{% endblock content%}
+</div>
+</body>
+</html>
