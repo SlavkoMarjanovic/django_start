@@ -43,3 +43,4 @@ def contact(request):
     return render(request, "contact.html")
 
 #    return HttpResponse(html_)
+# pozdrav
