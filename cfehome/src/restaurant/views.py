@@ -1,51 +1,29 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
-import random
-
-# Create your views here.
-# Function based view
-'''def home(request):
-    html_ = """ <!DOCTYPE html>
-<html lang=en>
-
-<head>
-</head>
-<body>
-<h1>Hello word</h1>
-<p>This is a {{html_var}} comming true</p>
-</body>
-</html>
-
-
-
-
-
-
-
-    """
+from django.views.generic import TemplateView
 '''
-def home(request):
-    num = random.randint(0,1000000)
-    some_list = [num, random.randint(0,1000000), random.randint(0,1000000)]
-    contents = {
-        "num":num,
-        "bool_item":True,
-        "some_list":some_list
-    }
-    return render(request, "home.html",contents)
 
-def about(request):
+class HomeView(TemplateView):
+    template_name = 'home.html'
+    def get_context_data(self, *args, **kwargs):
+        contex = super(HomeView, self).get_context_data(*args, **kwargs)
+        num = random.randint(0, 1000000)
+        some_list = [num, random.randint(0, 1000000), random.randint(0, 1000000)]
+        contex = {
+            "num": num,
+            "some_list": some_list
+        }
 
-    return render(request, "about.html")
+        print(contex)
+        return contex
 
-def contact(request):
-
-    return render(request, "contact.html")
+class AboutView(TemplateView):
+    template_name = 'about.html'
 class ContentView(View):
     def get(self, request, *args, **kwargs):
         contents = {}
-        return render(request, "contact.html", contents)
+        return render(request, "contact.html", contents)'''
 
 #    return HttpResponse(html_)
 # pozdrav
