@@ -1,5 +1,6 @@
 from django import forms
 from .models import  RestaurantLocation
+from  .validators import validate_category
 
 class RestorauntCreateForm(forms.Form):
     name =          forms.CharField()
@@ -7,6 +8,7 @@ class RestorauntCreateForm(forms.Form):
     category =      forms.CharField(required=False)
 
 class RestaurantLocationCreateForm(forms.ModelForm):
+    #category =      forms.CharField(required=False, validators=[validate_category])
     class Meta:
         model = RestaurantLocation
         fields = [

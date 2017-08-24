@@ -3,20 +3,20 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from .models import RestaurantLocation
-from .forms import RestorauntCreateForm
-from django.views.generic import TemplateView, ListView, DetailView
+from .forms import RestorauntCreateForm, RestaurantLocationCreateForm
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 
 
 def restaurant_createview(request):
-    form = RestorauntCreateForm(request.POST)
-    if request.method == "POST":
-        if form.is_valid():
-            obj = RestaurantLocation.objects.create(
-                name = form.cleaned_data.get("name"),
-                location = form.cleaned_data.get("location"),
-                category = form.cleaned_data.get("category")
-            )
+    form = RestaurantLocationCreateForm(request.POST or None)
+    errors = None
+    if form.is_valid():
+        form.save()
+
         return HttpResponseRedirect("/restaurant/")
+    if form.errors:
+        errors = form.errors
+
     template_name = 'restaurant/form.html'
     contex = {"form":form}
     return render(request, template_name, contex)
@@ -48,9 +48,15 @@ class Restaurantlistview(ListView):
 
 class RestaurantDetailView(DetailView):
     queryset = RestaurantLocation.objects.all()
-'''    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(RestaurantDetailView, self).get_context_data(**kwargs)
-        return context'''
+        print(context)
+        return context
+
+class RestaurantCreateView(CreateView):
+    form_class = RestaurantLocationCreateForm
+    template_name = 'restaurant/form.html'
+    success_url = '/restaurant/'
 
             
 
