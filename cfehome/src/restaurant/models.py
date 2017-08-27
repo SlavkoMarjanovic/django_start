@@ -8,7 +8,7 @@ from .validators import validate_category
 # Create your models here.
 User = settings.AUTH_USER_MODEL
 class RestaurantLocation(models.Model):
-    user =          models.ForeignKey(User)
+    owner =          models.ForeignKey(User)
     name =          models.CharField(max_length=120)
     location =      models.CharField(max_length=120, null=True, blank=True)
     category =      models.CharField(max_length=120, null=True, blank=True, validators=[validate_category])
