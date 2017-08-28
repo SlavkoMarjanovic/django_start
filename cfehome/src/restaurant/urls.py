@@ -19,8 +19,9 @@ from .views import Restaurantlistview, RestaurantDetailView, RestaurantCreateVie
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    url(r'^$', Restaurantlistview.as_view(), name= "list"),
+
     url(r'^create/$', RestaurantCreateView.as_view(), name= "create"),
     url(r'^(?P<slug>[\w-]+)/$', RestaurantDetailView.as_view(), name ="detail"),
+    url(r'^$', Restaurantlistview.as_view(), name= "list"),
 
 ]
