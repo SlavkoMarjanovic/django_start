@@ -6,9 +6,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from .models import RestaurantLocation
 from .forms import RestorauntCreateForm, RestaurantLocationCreateForm
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
 
-@login_required(login_url="/login/")
+'''@login_required(login_url="/login/")
 def restaurant_createview(request):
     form = RestaurantLocationCreateForm(request.POST or None)
     errors = None
@@ -38,26 +38,18 @@ def restaurantlistview(request):
         "object_list" : query_set
     }
     return render(request, template_name, contex)
-
-class Restaurantlistview(ListView):
+'''
+class Restaurantlistview(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        slug = self.kwargs.get("slug")
-        if slug:
-            queryset = RestaurantLocation.objects.filter(
-                Q(category__iexact=slug) |
-                Q(category__icontains=slug)
+        return RestaurantLocation.objects.filter(owner = self.request.user)
 
-            )
-        else:
-            queryset = RestaurantLocation.objects.all()
-        return queryset
-
-class RestaurantDetailView(DetailView):
-    queryset = RestaurantLocation.objects.all()
-    def get_context_data(self, **kwargs):
+class RestaurantDetailView(LoginRequiredMixin, DetailView):
+    def get_queryset(self):
+        return RestaurantLocation.objects.filter(owner = self.request.user)
+'''    def get_context_data(self, **kwargs):
         context = super(RestaurantDetailView, self).get_context_data(**kwargs)
         print(context)
-        return context
+        return context'''
 
 class RestaurantCreateView(LoginRequiredMixin, CreateView):
     form_class = RestaurantLocationCreateForm
@@ -76,6 +68,19 @@ class RestaurantCreateView(LoginRequiredMixin, CreateView):
         instance.owner = self.request.user
         return super(RestaurantCreateView, self).form_valid(form)
 
+class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = RestaurantLocationCreateForm
+    login_url = '/login/'
+    template_name = 'form.html'
+    success_url = '/restaurant/'
+
+    def get_context_data(self, **kwargs):
+        context = super(RestaurantUpdateView, self).get_context_data(**kwargs)
+        context['title'] = 'Add restaurant'
+        return context
+
+    def get_queryset(self):
+        return RestaurantLocation.objects.filter(owner=self.request.user)
 
             
 

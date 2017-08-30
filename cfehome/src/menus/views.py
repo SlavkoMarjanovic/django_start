@@ -40,5 +40,9 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
         context = super(ItemUpdateView, self).get_context_data(**kwargs)
         context['title']= 'Update view'
         return context
+    def get_form_kwargs(self):
+        kwargs = super(ItemUpdateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
 # Create your views here.

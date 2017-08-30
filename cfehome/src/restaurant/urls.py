@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-from .views import Restaurantlistview, RestaurantDetailView, RestaurantCreateView,restaurant_createview
+from .views import Restaurantlistview, RestaurantDetailView, RestaurantCreateView,RestaurantUpdateView
 from django.views.generic import TemplateView
 
 urlpatterns = [
 
     url(r'^create/$', RestaurantCreateView.as_view(), name= "create"),
     url(r'^(?P<slug>[\w-]+)/$', RestaurantDetailView.as_view(), name ="detail"),
+    url(r'^(?P<slug>[\w-]+)/edit/$', RestaurantUpdateView.as_view(), name="edit"),
     url(r'^$', Restaurantlistview.as_view(), name= "list"),
 
 ]
