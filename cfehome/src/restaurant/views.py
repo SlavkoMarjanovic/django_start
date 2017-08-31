@@ -71,8 +71,8 @@ class RestaurantCreateView(LoginRequiredMixin, CreateView):
 class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
     form_class = RestaurantLocationCreateForm
     login_url = '/login/'
-    template_name = 'form.html'
-    success_url = '/restaurant/'
+    template_name = 'restaurant/detail-update.html'
+#    success_url = '/restaurant/'
 
     def get_context_data(self, **kwargs):
         context = super(RestaurantUpdateView, self).get_context_data(**kwargs)

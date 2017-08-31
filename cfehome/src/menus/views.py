@@ -32,7 +32,7 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
         return kwargs
 
 class ItemUpdateView(LoginRequiredMixin, UpdateView):
-    template_name = 'form.html'
+    template_name = 'menus/menus_update.html'
     form_class = ItemForm
     def get_queryset(self):
         return Item.objects.filter(user=self.request.user)

@@ -18,15 +18,17 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from restaurant.views import Restaurantlistview, RestaurantDetailView, RestaurantCreateView
 
+
 from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name ='home.html'), name= "home"),
     url(r'^login/$',LoginView.as_view(),name='login'),
-    url(r'^restaurant/', include("restaurant.urls", namespace="restaurant")),
+    url(r'^restaurant/', include("restaurant.url", namespace="restaurant")),
     url('^accounts/', admin.site.urls),
     url(r'^items/', include("menus.urls", namespace="menus")),
+    url(r'^u/', include("profiles.urls", namespace="profiles")),
 #    url(r'^restaurant/create/$', RestaurantCreateView.as_view(), name= "restaurant-create"),
 #    url(r'^restaurant/create/$', restaurant_createview),
 #    url(r'^restaurant/(?P<slug>\w+)/$', Restaurantlistview.as_view()),
