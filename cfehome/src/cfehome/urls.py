@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name ='home.html'), name= "home"),
     url(r'^login/$',LoginView.as_view(),name='login'),
-#    url(r'^restaurant/', include("restaurant.url", namespace="restaurant")),
+    url(r'^restaurant/', include("restaurant.urls", namespace="restaurant")),
     url('^accounts/', admin.site.urls),
     url(r'^items/', include("menus.urls", namespace="menus")),
     url(r'^u/', include("profiles.urls", namespace="profiles")),
