@@ -46,10 +46,9 @@ class Restaurantlistview(LoginRequiredMixin, ListView):
 class RestaurantDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         return RestaurantLocation.objects.filter(owner = self.request.user)
-'''    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(RestaurantDetailView, self).get_context_data(**kwargs)
-        print(context)
-        return context'''
+        return context
 
 class RestaurantCreateView(LoginRequiredMixin, CreateView):
     form_class = RestaurantLocationCreateForm
@@ -76,7 +75,8 @@ class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(RestaurantUpdateView, self).get_context_data(**kwargs)
-        context['title'] = 'Add restaurant'
+        name = self.get_object().name
+        context['title'] = 'Update{}'.format(name)
         return context
 
     def get_queryset(self):
