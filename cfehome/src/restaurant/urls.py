@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-from .views import Restaurantlistview, RestaurantDetailView, RestaurantCreateView,RestaurantUpdateView
+from .views import Restaurantlistview, RestaurantDetailView, RestaurantCreateView,RestaurantUpdateView, RestoranLocationList
 from django.views.generic import TemplateView
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
 
@@ -24,5 +25,5 @@ urlpatterns = [
 #    url(r'^(?P<slug>[\w-]+)/$', RestaurantUpdateView.as_view(), name ="detail"),
     url(r'^(?P<slug>[\w-]+)/edit/$', RestaurantUpdateView.as_view(), name="detail"),
     url(r'^$', Restaurantlistview.as_view(), name= "list"),
-
+    url(r'api/$', RestoranLocationList.as_view(), name="api"),
 ]

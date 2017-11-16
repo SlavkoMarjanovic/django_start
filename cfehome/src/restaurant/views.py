@@ -7,6 +7,10 @@ from django.views import View
 from .models import RestaurantLocation
 from .forms import RestorauntCreateForm, RestaurantLocationCreateForm
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import RestaurantLocationSerializer
 
 '''@login_required(login_url="/login/")
 def restaurant_createview(request):
@@ -81,6 +85,14 @@ class RestaurantUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_queryset(self):
         return RestaurantLocation.objects.filter(owner=self.request.user)
+class RestoranLocationList(APIView):
+    def get(self, request):
+        restaurant = RestaurantLocation.objects.all()
+        serializer = RestaurantLocationSerializer(restaurant, many=True)
+        return Response(serializer.data)
+    def post(self):
+        pass
+
 
             
 
