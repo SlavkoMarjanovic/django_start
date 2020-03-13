@@ -64,7 +64,7 @@ pyPdf==1.13
 python-apt==1.1.0b1
 python-dateutil==2.6.1
 python-debian==0.1.27
-python-gnupg==0.3.8
+python-gnupg==0.4.4
 python-ntlm==1.1.0
 python-systemd==231
 pytz==2017.2
