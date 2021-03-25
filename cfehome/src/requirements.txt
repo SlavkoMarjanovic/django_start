@@ -69,7 +69,7 @@ python-ntlm==1.1.0
 python-systemd==231
 pytz==2017.2
 pyxdg==0.25
-PyYAML==3.11
+PyYAML==5.4
 reportlab==3.3.0
 requests==2.9.1
 requests-ntlm==1.1.0
