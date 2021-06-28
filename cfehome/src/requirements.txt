@@ -16,7 +16,7 @@ cryptography==2.1.2
 defer==1.0.6
 Django==2.2.24
 django-bootstrap3==9.0.0
-djangorestframework==3.7.3
+djangorestframework==3.11.2
 dnspython==1.15.0
 docutils==0.14
 et-xmlfile==1.0.1
