@@ -38,7 +38,7 @@ Mako==1.0.3
 MarkupSafe==0.23
 netmiko==1.4.3
 ntlm-auth==1.0.6
-numpy==1.13.1
+numpy==1.22.0
 oauthlib==1.0.3
 olefile==0.44
 onboard==1.2.0
